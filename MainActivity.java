@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity
         setDefaultLocation();
 
         //런타임 퍼미션 처리
-        // 1. 위치 퍼미션을 가지고 있는지 체크
+        //1. 위치 퍼미션을 가지고 있는지 체크
         int hasFineLocationPermission = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
         int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(this,
@@ -119,8 +119,8 @@ public class MainActivity extends AppCompatActivity
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED &&
                 hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED   ) {
 
-            // 2. 이미 퍼미션을 가지고 있는 경우
-            startLocationUpdates(); // 3. 위치 업데이트 시작
+            //2. 이미 퍼미션을 가지고 있는 경우
+            startLocationUpdates(); //3. 위치 업데이트 시작
 
         }else {   
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])) {
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity
             if (hasFineLocationPermission != PackageManager.PERMISSION_GRANTED ||
                     hasCoarseLocationPermission != PackageManager.PERMISSION_GRANTED   ) {
 
-                Log.d(TAG, "startLocationUpdates : 퍼미션 가지고 있지 ");
+                Log.d(TAG, "startLocationUpdates : 퍼미션 가지고 있지 않음");
                 return;
             }
 
@@ -237,7 +237,6 @@ public class MainActivity extends AppCompatActivity
                     latlng.longitude,
                     1);
         } catch (IOException ioException) {
-            //네트워크 문제
             Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
             return "지오코더 서비스 사용불가";
         } catch (IllegalArgumentException illegalArgumentException) {
@@ -349,7 +348,6 @@ public class MainActivity extends AppCompatActivity
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
                         || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
 
-                    // 사용자가 거부만 선택한 경우에는 앱을 다시 실행하여 허용을 선택하면 앱을 사용할 수 있습니다.
                     Snackbar.make(mLayout, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요. ",
                             Snackbar.LENGTH_INDEFINITE).setAction("확인", new View.OnClickListener() {
 
@@ -415,17 +413,13 @@ public class MainActivity extends AppCompatActivity
 
                         Log.d(TAG, "onActivityResult : GPS 활성화 되있음");
 
-
                         needRequest = true;
 
                         return;
                     }
                 }
-
                 break;
         }
     }
-
-
 
 }
